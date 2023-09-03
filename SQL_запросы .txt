@@ -1,0 +1,12 @@
+SELECT login, count("inDelivery") 
+FROM "Couriers" as co 
+INNER JOIN "Orders" as ord ON co.id=ord."courierId" 
+Group by login;
+
+SELECT track, 
+(CASE 
+WHEN finished = 't' THEN '2' 
+WHEN "inDelivery" = 't' THEN '1' 
+WHEN cancelled = 't' THEN '-1' 
+ELSE '0' end) AS "Status" 
+FROM "Orders";
